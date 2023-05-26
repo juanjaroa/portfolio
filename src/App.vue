@@ -1,18 +1,22 @@
 <template>
-  <h1>Counter</h1>
-  <h2>{{ count }}</h2>
-  <div>
-    <button>Decrease</button><button>Reset</button><button>Increase</button>
-  </div>
+  <CounterComponent />
 </template>
 
 <script setup>
-let count = 0
+import CounterComponent from './components/CounterComponent.vue'
 </script>
 
 <style>
+@font-face {
+  font-family: 'Roboto';
+  src: url(./fonts/Roboto-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url(./fonts/Roboto-Bold.ttf) format('truetype');
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
