@@ -22,6 +22,11 @@ import CounterComponent from './components/CounterComponent.vue'
   src: url(./fonts/Roboto-Medium.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Roboto-Black';
+  src: url(./fonts/Roboto-Black.ttf) format('truetype');
+}
+
 #app {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,5 +38,6 @@ import CounterComponent from './components/CounterComponent.vue'
   gap: 1rem;
   color: #2c3e50;
   padding: 3rem;
+
 }
 </style>
