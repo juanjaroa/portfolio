@@ -11,16 +11,27 @@ import CounterComponent from './components/CounterComponent.vue'
   font-family: 'Roboto';
   src: url(./fonts/Roboto-Regular.ttf) format('truetype');
 }
+
 @font-face {
   font-family: 'Roboto-Bold';
   src: url(./fonts/Roboto-Bold.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url(./fonts/Roboto-Medium.ttf) format('truetype');
+}
+
 #app {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 3rem;
 }
 </style>
