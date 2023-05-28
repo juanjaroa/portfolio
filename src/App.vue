@@ -40,4 +40,8 @@ import CounterComponent from './components/CounterComponent.vue'
   padding: 3rem;
 
 }
+
+button {
+  user-select: none;
+}
 </style>
