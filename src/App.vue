@@ -1,9 +1,14 @@
 <template>
-  <CounterComponent />
+  <CounterComponent v-show="showCounterComponent" />
+  <TriquiComponent />
 </template>
 
 <script setup>
 import CounterComponent from './components/CounterComponent.vue'
+import TriquiComponent from './components/TriquiComponent/TriquiComponent.vue'
+
+let showCounterComponent = false
+//let showTriquiComponent = true
 </script>
 
 <style>
@@ -41,7 +46,8 @@ import CounterComponent from './components/CounterComponent.vue'
 
 }
 
-button {
+button,
+#triqui-grid .cell {
   user-select: none;
 }
 </style>
