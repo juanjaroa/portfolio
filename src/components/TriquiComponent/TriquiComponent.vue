@@ -3,8 +3,8 @@
         <div id="triqui-grid">
             <div class="cell" v-for="(cell, index) in grid" :key="index" :id="index"
                 :style="{ cursor: (turn % 2 !== 0) ? xCursor : oCursor }" @click="cellIsEmpty(cell)">
-                <img v-if="cell === 'x'" src="/assets/x.png" alt="">
-                <img v-if="cell === 'o'" src="/assets/o.png" alt="">
+                <img v-show="cell === 'x'" src="/assets/x.png" alt="">
+                <img v-show="cell === 'o'" src="/assets/o.png" alt="">
             </div>
         </div>
     </div>
@@ -40,6 +40,48 @@ function playTriqui(cell) {
         turn.value++
     }
 
+    //Comprueba filas
+    if (grid.value[0] === grid.value[1] && grid.value[0] === grid.value[2]) {
+        setTimeout(() => {
+            grid.value[0] === 'x' ? window.alert('X WIN') : window.alert('O WIN')
+        }, 100)
+    } else if (grid.value[3] === grid.value[4] && grid.value[3] === grid.value[5]) {
+        setTimeout(() => {
+            grid.value[3] === 'X' ? window.alert('X WIN') : window.alert('O WIN')
+        }, 100)
+    } else if (grid.value[6] === grid.value[7] && grid.value[6] === grid.value[8]) {
+        setTimeout(() => {
+            grid.value[6] === 'x' ? window.alert('X WIN') : window.alert('O WIN')
+        }, 100)
+    }
+    //Comprueba columnas
+    else if (grid.value[0] === grid.value[3] && grid.value[0] === grid.value[6]) {
+        setTimeout(() => {
+            grid.value[0] === 'x' ? window.alert('X WIN') : window.alert('O WIN')
+        }, 100)
+    }
+    else if (grid.value[1] === grid.value[4] && grid.value[1] === grid.value[7]) {
+        setTimeout(() => {
+            grid.value[1] === 'x' ? window.alert('X WIN') : window.alert('O WIN')
+        }, 100)
+    }
+    else if (grid.value[2] === grid.value[5] && grid.value[2] === grid.value[8]) {
+        setTimeout(() => {
+            grid.value[2] === 'x' ? window.alert('X WIN') : window.alert('O WIN')
+        }, 100)
+    }
+    // comprueba diagonal izquierda-arriba || derecha-abajo
+    else if (grid.value[0] === grid.value[4] && grid.value[0] === grid.value[8]) {
+        setTimeout(() => {
+            grid.value[0] === 'x' ? window.alert('X WIN') : window.alert('O WIN')
+        }, 100)
+    }
+
+    else if (grid.value[2] === grid.value[4] && grid.value[2] === grid.value[6]) {
+        setTimeout(() => {
+            grid.value[2] === 'x' ? window.alert('X WIN') : window.alert('O WIN')
+        }, 100)
+    }
 }
 </script>
 
