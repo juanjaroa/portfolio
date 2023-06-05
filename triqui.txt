@@ -1,0 +1,49 @@
+Función iniciarTablero():
+    tablero = matriz 3x3 vacía
+
+Función imprimirTablero():
+    Para cada fila en el tablero:
+        Imprimir los elementos de la fila separados por espacios
+        Imprimir nueva línea
+
+Función hayEspacioDisponible():
+    Para cada fila en el tablero:
+        Para cada elemento en la fila:
+            Si el elemento está vacío, retornar verdadero
+    Retornar falso
+
+Función verificarGanador(símbolo):
+    Para cada fila en el tablero:
+        Si todos los elementos de la fila son iguales a símbolo, retornar verdadero
+    Para cada columna en el tablero:
+        Si todos los elementos de la columna son iguales a símbolo, retornar verdadero
+    Si las diagonales principales tienen todos los elementos iguales a símbolo, retornar verdadero
+    Si las diagonales secundarias tienen todos los elementos iguales a símbolo, retornar verdadero
+    Retornar falso
+
+Función jugarTriqui():
+    iniciarTablero()
+    turno = 1
+    Mientras hayEspacioDisponible():
+        imprimirTablero()
+        Si turno es impar:
+            símbolo = "X"
+        De lo contrario:
+            símbolo = "O"
+        Imprimir "Turno del jugador", símbolo
+        Leer fila y columna del jugador
+        Si la posición está vacía:
+            Colocar el símbolo en la posición seleccionada
+            Si verificarGanador(símbolo):
+                imprimirTablero()
+                Imprimir "¡El jugador", símbolo, "ha ganado!"
+                Salir del ciclo
+            De lo contrario:
+                turno = turno + 1
+        De lo contrario:
+            Imprimir "La posición seleccionada ya está ocupada. Intenta nuevamente."
+    Si no se encontró un ganador:
+        imprimirTablero()
+        Imprimir "¡El juego terminó en empate!"
+
+jugarTriqui()

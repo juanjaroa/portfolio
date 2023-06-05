@@ -75,15 +75,7 @@ h2 {
   gap: 0.5rem;
 }
 
-button {
-  padding: 0.25rem 1rem;
-  border: solid 2px;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-size: 0.75rem;
-  font-family: Roboto-Medium;
-  text-align: center;
-}
+
 
 .add-counter {
   width: 100%;

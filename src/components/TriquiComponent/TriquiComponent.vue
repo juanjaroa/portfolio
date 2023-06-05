@@ -1,40 +1,62 @@
 <template>
-    <div class="triqui-wrap">
-        <div id="triqui-grid">
-            <div class="cell" v-for="(cell, index) in grid" :key="index" :id="index"
-                :style="{ cursor: (turn % 2 !== 0) ? xCursor : oCursor }" @click="cellIsEmpty(cell)">
-                <img v-show="cell === 'x'" src="/assets/x.png" alt="">
-                <img v-show="cell === 'o'" src="/assets/o.png" alt="">
+    <div class="section">
+        <header>
+            <div>
+                <img :src="assetX" alt="">
+                <p>{{ wonX }}</p>
+            </div>
+            <div>
+                <img :src="assetO" alt="">
+                <p>{{ wonO }}</p>
+            </div>
+        </header>
+        <div class="triqui-wrap">
+            <div id="triqui-grid">
+                <div class="cell" v-for="(cell, index) in grid" :key="index" :id="index"
+                    :style="{ cursor: (turn % 2 !== 0) ? xCursor : oCursor }" @click="cellIsEmpty(cell)">
+                    <img v-show="cell === 'x'" :src="assetX" alt="">
+                    <img v-show="cell === 'o'" :src="assetO" alt="">
+                </div>
             </div>
         </div>
+        <ModalDialog :winner="winner" @modalClosed="handleModalClosed" />
     </div>
-    <ModalDialog :winner="winner" />
 </template>
 <script setup>
-//import { ref } from 'vue'
-
 import { ref } from "vue"
 import ModalDialog from '../ModalDialog.vue'
-//import { onMounted } from "vue";
-//import { h } from 'vue'
 
+let assetX = '/assets/x.png'
+let assetO = '/assets/o.png'
 
 let xCursor = 'url(/assets/x-cursor.png) , pointer'
 let oCursor = 'url(/assets/o-cursor.png) , pointer'
-//let x = h('img', { src: '/assets/x.png' })
-//let o = '<img src="/assets/o.png" />'
 
 let grid = ref([1, 2, 3, 4, 5, 6, 7, 8, 9])
-
 let turn = ref(1)
-
 let winner = ref()
+let wonX = ref(0)
+let wonO = ref(0)
 
+function resetTrique() {
+    grid.value = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    turn.value = 1
+    winner = ref()
+}
+
+//Funcion para manejar el evento
+const handleModalClosed = () => {
+    if (winner.value === 'x') {
+        wonX.value++
+    } else if (winner.value === 'o') {
+        wonO.value++
+    }
+    resetTrique()
+}
 
 function cellIsEmpty(cell) {
     typeof (cell) === 'number' ? playTriqui(cell) : ''
 }
-
 
 function playTriqui(cell) {
     if (turn.value % 2 !== 0) {
@@ -45,37 +67,61 @@ function playTriqui(cell) {
         turn.value++
     }
 
-    //Comprueba filas
-    if (grid.value[0] === grid.value[1] && grid.value[0] === grid.value[2]) {
-        winner.value = grid.value[0]
-    } else if (grid.value[3] === grid.value[4] && grid.value[3] === grid.value[5]) {
-        winner.value = grid.value[3]
-    } else if (grid.value[6] === grid.value[7] && grid.value[6] === grid.value[8]) {
-        winner.value = grid.value[6]
-    }
-    //Comprueba columnas
-    else if (grid.value[0] === grid.value[3] && grid.value[0] === grid.value[6]) {
-        winner.value = grid.value[0]
-    }
-    else if (grid.value[1] === grid.value[4] && grid.value[1] === grid.value[7]) {
-        winner.value = grid.value[1]
-    }
-    else if (grid.value[2] === grid.value[5] && grid.value[2] === grid.value[8]) {
-        winner.value = grid.value[2]
-    }
-    // comprueba diagonal izquierda-arriba || derecha-abajo
-    else if (grid.value[0] === grid.value[4] && grid.value[0] === grid.value[8]) {
-
-        winner.value = grid.value[0]
-
-    }
-    else if (grid.value[2] === grid.value[4] && grid.value[2] === grid.value[6]) {
-        winner.value = grid.value[2]
+    if (turn.value >= 5) {
+        winner.value = checkWinner()
     }
 }
+
+const checkWinner = () => {
+    const winningCombinations = [
+        [0, 1, 2], // filas
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6], // columnas
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8], // diagonales
+        [2, 4, 6]
+    ];
+
+    for (const combination of winningCombinations) {
+        const [a, b, c] = combination;
+        if (grid.value[a] === grid.value[b] && grid.value[a] === grid.value[c]) {
+            return grid.value[a]
+        }
+    }
+    return;
+};
+
 </script>
 
 <style scoped>
+.section {
+    width: 50%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+header,
+header>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+}
+
+header {
+    width: 100%;
+}
+
+header img {
+    height: 1.5rem;
+}
+
 .triqui-wrap {
     overflow: hidden;
 }
