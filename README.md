@@ -1,4 +1,4 @@
-# counter
+# my-portfolio
 
 ## Project setup
 ```

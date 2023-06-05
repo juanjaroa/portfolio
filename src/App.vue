@@ -7,8 +7,8 @@
 import CounterComponent from './components/CounterComponent.vue'
 import TriquiComponent from './components/TriquiComponent/TriquiComponent.vue'
 
-let showCounterComponent = true
-let showTriquiComponent = false
+let showCounterComponent = false
+let showTriquiComponent = true
 </script>
 
 <style>

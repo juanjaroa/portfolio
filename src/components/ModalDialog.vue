@@ -17,12 +17,6 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
-  assetX: {
-    type: String
-  },
-  assetO: {
-    type: String
-  }
 })
 
 //evento emitido
@@ -38,7 +32,6 @@ const emitModalClosed = () => {
 }
 
 watch(winnerRef, (newValue, oldValue) => {
-  console.log(newValue, oldValue)
   if (newValue !== undefined && oldValue === undefined) {
     dialog.value.showModal()
   }
