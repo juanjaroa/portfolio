@@ -26,11 +26,11 @@
 import { ref } from "vue"
 import ModalDialog from '../ModalDialog.vue'
 
-let assetX = '/assets/x.png'
-let assetO = '/assets/o.png'
+let assetX = '/x.png'
+let assetO = '/o.png'
 
-let xCursor = 'url(/assets/x-cursor.png) , pointer'
-let oCursor = 'url(/assets/o-cursor.png) , pointer'
+let xCursor = 'url(/x-cursor.png) , pointer'
+let oCursor = 'url(/o-cursor.png) , pointer'
 
 let grid = ref([1, 2, 3, 4, 5, 6, 7, 8, 9])
 let turn = ref(1)
